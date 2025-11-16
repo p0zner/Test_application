@@ -1,0 +1,43 @@
+.appHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+
+  height: 80px;
+  padding: 0 20px;
+  background-color: #ffffff;
+
+  border-bottom: 1px solid #dee2e6;
+  margin: 0 -20px;
+}
+
+.appTitle {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #7c02e1;
+}
+
+.addButton {
+  padding: 10px 20px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  background-color: #7c02e1;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.addButton:hover {
+  background-color: #6f01cc;
+  box-shadow: 0 4px 10px rgba(124, 2, 225, 0.2);
+}
