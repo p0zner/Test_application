@@ -14,6 +14,7 @@ import NotFoundPage from "../NotFoundPage/NotFoundPage.tsx";
 import IconButton from "../../components/IconButton/IconButton.tsx";
 import {selectProductById} from "../../store/selectors/selectProductById.ts";
 import {useModal} from "../../hooks/useModal.ts";
+import ImageModal from "../../components/ImageModal/ImageModal.tsx";
 
 import classes from './productDetails.module.scss';
 
@@ -48,10 +49,10 @@ const ProductDetailPage = () => {
     }
 
     if (status === 'loading') {
-        return <Loader />
+        return <Loader/>
     }
     if (status === 'succeeded' && !product) {
-        return <NotFoundPage />;
+        return <NotFoundPage/>;
     }
 
     return (
@@ -70,7 +71,9 @@ const ProductDetailPage = () => {
                 </div>
                 {product && (
                     <div className={classes.contentGrid}>
-                        <img src={product.image} alt={product.title} className={classes.image}/>
+                        <div className={classes.imageContainer} onClick={open}>
+                            <img src={product.image} alt={product.title} className={classes.image}/>
+                        </div>
                         <div className={classes.infoContainer}>
                             <h1 className={classes.title}>{product.title}</h1>
                             <p className={classes.description}>{product.description}</p>
@@ -78,6 +81,15 @@ const ProductDetailPage = () => {
                         </div>
                     </div>
                 )}
+                {product && (
+                    <ImageModal
+                        isOpen={isOpen}
+                        onClose={close}
+                        imageUrl={product.image}
+                        imageAlt={product.title}
+                    />
+                )
+                }
                 <AddProductModal
                     key={product?.id || 'editModal'}
                     isOpen={isOpen}
