@@ -12,7 +12,10 @@ export const productSchema = z.object({
         .max(150, {message: 'Поле должно содержать максимум 150 символов'}),
     price: z.string()
         .min(1, {message: 'Поле обязательно для заполнения'})
-        .regex(/^\d+(\.\d*)?$/, { message: 'Поле должно содержать только числа' }),
+        .regex(/^\d+(\.\d*)?$/, { message: 'Поле должно содержать только числа' })
+        .refine((val) => parseFloat(val) < 1000000000, {
+            message: 'Значение должно быть меньше 1000000000'
+        }),
     image: z.instanceof(FileList)
         .optional()
         .refine(
