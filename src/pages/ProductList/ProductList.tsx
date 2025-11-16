@@ -1,4 +1,4 @@
-import ProductCard from "./ProductCard/ProductCard.tsx"; // Можно использовать общие стили
+import ProductCard from "./ProductCard/ProductCard.tsx";
 
 import classes from './productList.module.scss';
 import Loader from "../../components/Loader/Loader.tsx";
