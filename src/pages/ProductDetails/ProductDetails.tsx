@@ -42,7 +42,7 @@ const ProductDetailPage = () => {
     const handleEdit = async (data: ProductFormData, id?: string): Promise<void> => {
         if (id === undefined || !product) return Promise.reject('Id не найден')
         try {
-            await dispatch(editProduct({id, data, currentImage: product.image})).unwrap()
+            await dispatch(editProduct({id, data})).unwrap()
             toast.success('Редактирование завершено успешно');
         } catch (error) {
             toast.error('Не удалось отредактировать товар')

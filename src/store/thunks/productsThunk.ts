@@ -6,12 +6,10 @@ import {v4 as uuidv4} from "uuid";
 interface EditProductArgs {
     id: string;
     data: ProductFormData;
-    currentImage: string;
 }
 
 interface EditProductReturn {
     id: string;
-    oldImageUrl?: string;
     updatedData: Partial<Omit<Product, 'id'>>;
 }
 
@@ -62,20 +60,18 @@ export const addProduct = createAsyncThunk<Product, ProductFormData>(
 
 export const editProduct = createAsyncThunk<EditProductReturn, EditProductArgs>(
     'products/editProduct',
-    async ({ id, data, currentImage }) => {
+    async ({ id, data }) => {
         await new Promise(resolve => setTimeout(resolve, 1000));
 
         const { image: imageFileList, ...otherData } = data;
         const updatedData: Partial<Omit<Product, 'id'>> = { ...otherData };
-        let oldImageUrl: string | undefined = undefined;
 
         if (imageFileList && imageFileList.length > 0) {
             const imageFile = imageFileList[0];
             updatedData.image = URL.createObjectURL(imageFile);
-            oldImageUrl = currentImage;
         }
 
-        return { id, updatedData, oldImageUrl };
+        return { id, updatedData };
     }
 );
 
