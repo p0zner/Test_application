@@ -1,11 +1,12 @@
 import {type ProductFormData, productSchema} from "./schema/schema.ts";
 import {type SubmitHandler, useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
-import {memo, useEffect, useState} from "react";
+import {memo, useEffect, useRef, useState} from "react";
 
 import classes from './addProductModal.module.scss'
 import type {Product} from "../../types/product.ts";
 import {toast} from "react-toastify";
+import * as React from "react";
 
 interface ProductModalProps {
     isOpen: boolean;
@@ -16,6 +17,7 @@ interface ProductModalProps {
 
 const AddProductModal = memo(({isOpen, onClose, onAddProduct, editingProduct}: ProductModalProps) => {
     const isEditMode = !!editingProduct;
+    const mouseDownTargetRef = useRef<EventTarget | null>(null);
 
     const {
         register,
@@ -76,8 +78,19 @@ const AddProductModal = memo(({isOpen, onClose, onAddProduct, editingProduct}: P
         }
     }
 
+    const handleMouseDown = (event: React.MouseEvent<HTMLDivElement>) => {
+        mouseDownTargetRef.current = event.target;
+    };
+
+    const handleMouseUp = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (mouseDownTargetRef.current === event.target && event.currentTarget === event.target) {
+            onClose();
+        }
+        mouseDownTargetRef.current = null;
+    };
+
     return (
-        <div className={classes.backdrop} onClick={onClose}>
+        <div className={classes.backdrop} onMouseDown={handleMouseDown} onMouseUp={handleMouseUp}>
             <div className={classes.modal} onClick={(e) => e.stopPropagation()}>
                 <header className={classes.modalHeader}>
                     <h2>{isEditMode ? 'Редактирование товара' : 'Добавить новый товар'}</h2>

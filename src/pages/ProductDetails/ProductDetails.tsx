@@ -89,8 +89,7 @@ const ProductDetailPage = () => {
                         imageUrl={product.image}
                         imageAlt={product.title}
                     />
-                )
-                }
+                )}
                 <AddProductModal
                     key={product?.id || 'editModal'}
                     isOpen={isOpen}
