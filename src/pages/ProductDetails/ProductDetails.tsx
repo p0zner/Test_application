@@ -2,7 +2,7 @@ import {useParams, useNavigate} from 'react-router-dom';
 import {ArrowLeft, FilePenLine} from 'lucide-react';
 import {useAppDispatch} from "../../store/hooks/useAppDispatch.ts";
 import {useAppSelector} from "../../store/hooks/useAppSelector.ts";
-import {useCallback} from "react";
+import {useCallback, useState} from "react";
 import type {ProductFormData} from "../../components/AddProduct/schema/schema.ts";
 import {toast} from "react-toastify";
 import DeleteButton from "../../components/DeleteButton/DeleteButton.tsx";
@@ -26,6 +26,7 @@ const ProductDetailPage = () => {
     const status = useAppSelector(state => state.products.status);
 
     const {isOpen, open, close} = useModal()
+    const [isImageModalOpen, setIsImageModalOpen] = useState(false);
     const product = useAppSelector(state => selectProductById(state, productId || ''))
 
     const handleDelete = useCallback(async (id: string) => {
@@ -71,7 +72,7 @@ const ProductDetailPage = () => {
                 </div>
                 {product && (
                     <div className={classes.contentGrid}>
-                        <div className={classes.imageContainer} onClick={open}>
+                        <div className={classes.imageContainer} onClick={() => setIsImageModalOpen(true)}>
                             <img src={product.image} alt={product.title} className={classes.image}/>
                         </div>
                         <div className={classes.infoContainer}>
@@ -83,8 +84,8 @@ const ProductDetailPage = () => {
                 )}
                 {product && (
                     <ImageModal
-                        isOpen={isOpen}
-                        onClose={close}
+                        isOpen={isImageModalOpen}
+                        onClose={() => setIsImageModalOpen(false)}
                         imageUrl={product.image}
                         imageAlt={product.title}
                     />
