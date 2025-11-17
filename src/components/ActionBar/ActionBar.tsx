@@ -1,17 +1,16 @@
 import IconButton from "../IconButton/IconButton.tsx";
-import {deleteProduct, editProduct} from "../../store/thunks/productsThunk.ts";
+import {editProduct} from "../../store/thunks/productsThunk.ts";
 import {toast} from "react-toastify";
 import {useNavigate} from "react-router-dom";
 import {useAppDispatch} from "../../store/hooks/useAppDispatch.ts";
-import {useCallback} from "react";
 import {ArrowLeft, FilePenLine} from "lucide-react";
-import DeleteButton from "../DeleteButton/DeleteButton.tsx";
 import type {Product} from "../../types/product.ts";
 
 import classes from './actionBar.module.scss';
 import {useModal} from "../../hooks/useModal.ts";
 import AddProductModal from "../AddProduct/AddProductModal.tsx";
 import type {ProductFormData} from "../AddProduct/schema/schema.ts";
+import RemoveProduct from "../RemoveProduct/RemoveProduct.tsx";
 
 interface ActionBarProps {
     product?: Product;
@@ -33,16 +32,6 @@ const ActionBar = ({product}: ActionBarProps) => {
         }
     }
 
-    const handleDelete = useCallback(async (id: string) => {
-        try {
-            await dispatch(deleteProduct(id)).unwrap()
-            toast.success("Товар удален");
-            navigate('/')
-        } catch (error) {
-            toast.error('Не удалось удалить товар')
-        }
-    }, [dispatch, navigate]);
-
     return (
         <>
             <div className={classes.actionBar}>
@@ -53,7 +42,7 @@ const ActionBar = ({product}: ActionBarProps) => {
                     <IconButton onClick={open}>
                         <FilePenLine size={24}/>
                     </IconButton>
-                    {product && <DeleteButton id={product.id} onDelete={handleDelete} iconSize={24}/>}
+                    <RemoveProduct product={product} onSuccess={() => navigate('/')} iconSize={24}/>
                 </div>
             </div>
             <AddProductModal

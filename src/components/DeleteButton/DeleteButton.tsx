@@ -9,11 +9,11 @@ import Loader from "../Loader/Loader.tsx";
 interface DeleteButtonProps {
     id: string;
     onDelete: (id: string) => Promise<void>;
-    iconSize?: number;
-    displayMode?: 'overlay' | 'plain';
+    iconSize: number;
+    displayMode: 'overlay' | 'plain';
 }
 
-const DeleteButton = memo(({id, onDelete, iconSize = 18, displayMode = 'plain'}: DeleteButtonProps) => {
+const DeleteButton = memo(({id, onDelete, iconSize, displayMode}: DeleteButtonProps) => {
     const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
     const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
