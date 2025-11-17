@@ -23,7 +23,7 @@ const DeleteButton = memo(({id, onDelete, iconSize = 18, displayMode = 'plain'}:
         setIsDeleting(true);
         try {
             await onDelete(id);
-        } catch (error) {
+        } finally {
             setIsDeleting(false);
         }
     };
