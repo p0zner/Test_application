@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import type {Product} from "../../types/product.ts";
-import type {ProductFormData} from "../../components/AddProduct/schema/schema.ts";
+import type {ProductFormData} from "../../components/Form/schema/schema.ts";
 import {v4 as uuidv4} from "uuid";
 
 interface EditProductArgs {

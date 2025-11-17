@@ -8,9 +8,9 @@ import type {Product} from "../../types/product.ts";
 
 import classes from './actionBar.module.scss';
 import {useModal} from "../../hooks/useModal.ts";
-import AddProductModal from "../AddProduct/AddProductModal.tsx";
-import type {ProductFormData} from "../AddProduct/schema/schema.ts";
+import type {ProductFormData} from "../Form/schema/schema.ts";
 import RemoveProduct from "../RemoveProduct/RemoveProduct.tsx";
+import ProductModal from "../ProductModal/ProductModal.tsx";
 
 interface ActionBarProps {
     product?: Product;
@@ -45,11 +45,11 @@ const ActionBar = ({product}: ActionBarProps) => {
                     <RemoveProduct product={product} onSuccess={() => navigate('/')} iconSize={24}/>
                 </div>
             </div>
-            <AddProductModal
+            <ProductModal
                 key={product?.id || 'editModal'}
                 isOpen={isOpen}
                 onClose={close}
-                onAddProduct={handleEdit}
+                onSubmit={handleEdit}
                 editingProduct={product || null}
             />
         </>

@@ -3,11 +3,11 @@ import classes from './header.module.scss'
 import {Plus} from "lucide-react";
 import {useAppDispatch} from "../../store/hooks/useAppDispatch.ts";
 import {useCallback} from "react";
-import type {ProductFormData} from "../AddProduct/schema/schema.ts";
+import type {ProductFormData} from "../Form/schema/schema.ts";
 import {toast} from "react-toastify";
-import AddProductModal from "../AddProduct/AddProductModal.tsx";
 import {addProduct} from "../../store/thunks/productsThunk.ts";
 import {useModal} from "../../hooks/useModal.ts";
+import ProductModal from "../ProductModal/ProductModal.tsx";
 
 const Header = () => {
     const dispatch = useAppDispatch();
@@ -34,7 +34,13 @@ const Header = () => {
             </button>
         </div>
 
-        <AddProductModal key="add-product" isOpen={isOpen} onClose={close} onAddProduct={handleAdd} editingProduct={null} />
+        <ProductModal
+            key="add-product"
+            isOpen={isOpen}
+            onClose={close}
+            onSubmit={handleAdd}
+            editingProduct={null}
+        />
     </header>
     )
 }
