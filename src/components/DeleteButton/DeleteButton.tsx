@@ -4,6 +4,7 @@ import classes from './deleteButton.module.scss';
 import * as React from "react";
 import IconButton from "../IconButton/IconButton.tsx";
 import classNames from "classnames";
+import Loader from "../Loader/Loader.tsx";
 
 interface DeleteButtonProps {
     id: string;
@@ -46,7 +47,7 @@ const DeleteButton = memo(({id, onDelete, iconSize = 18, displayMode = 'plain'}:
 
             {isDeleting && (
                 <div className={classes.deletingOverlay}>
-                    <div className={classes.loader}></div>
+                    <Loader size={20} thickness={3} loaderInButton />
                 </div>
             )
             }

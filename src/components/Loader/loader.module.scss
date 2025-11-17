@@ -4,11 +4,20 @@
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  animation: spin 1.5s linear infinite;
+  animation: spin 1s linear infinite;
   margin: 50px auto;
 }
 
+.loaderInButton {
+  border-style: solid;
+  border-color: #f3f3f3;
+  border-top-color: #7c02e1;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
