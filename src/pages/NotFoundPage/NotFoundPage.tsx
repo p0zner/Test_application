@@ -1,11 +1,15 @@
 import {useNavigate} from "react-router-dom";
 import classes from './notFoundPage.module.scss'
 
-const NotFoundPage = () => {
+interface NotFoundPageProps {
+    title?: string;
+}
+
+const NotFoundPage = ({title = 'Страница не найдена'}: NotFoundPageProps) => {
     const navigate = useNavigate();
     return (
         <div className={classes.notFound}>
-            <h2>Товар не найден</h2>
+            <h2>{title}</h2>
             <button onClick={() => navigate('/')} className={classes.button}>
                 Вернуться на главную
             </button>

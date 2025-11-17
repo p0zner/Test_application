@@ -4,18 +4,6 @@
   padding: 20px;
 }
 
-.actionBar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-.deleteOrEditButtons {
-  display: flex;
-  gap: 0.5rem;
-}
-
 .contentGrid {
   position: relative;
   overflow: hidden;
