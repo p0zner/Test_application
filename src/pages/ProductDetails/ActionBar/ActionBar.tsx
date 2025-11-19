@@ -1,18 +1,15 @@
-import IconButton from "../IconButton/IconButton.tsx";
+import IconButton from "../../../components/IconButton/IconButton.tsx";
 import {useNavigate} from "react-router-dom";
 import {ArrowLeft} from "lucide-react";
-import type {Product} from "../../types/product.ts";
-import RemoveProduct from "../RemoveProduct/RemoveProduct.tsx";
+import RemoveProduct from "../../../components/RemoveProduct/RemoveProduct.tsx";
 
 import classes from './actionBar.module.scss';
-import EditProduct from "../EditProduct/EditProduct.tsx";
+import EditProduct from "../../../components/EditProduct/EditProduct.tsx";
+import {useProductDetail} from "../../../context/productDetailContext.ts";
 
-interface ActionBarProps {
-    product?: Product;
-}
-
-const ActionBar = ({product}: ActionBarProps) => {
+const ActionBar = () => {
     const navigate = useNavigate();
+    const product = useProductDetail();
 
     return (
         <div className={classes.actionBar}>
