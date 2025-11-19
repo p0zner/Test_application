@@ -1,12 +1,8 @@
 import {createSlice, type PayloadAction} from '@reduxjs/toolkit';
 import {addProduct, deleteProduct, editProduct, fetchProducts} from '../thunks/productsThunk.ts'
-import type {Product} from "../../types/product.ts";
+import type {Product, ProductsState} from "@/types/product.ts";
 
-interface ProductsState {
-    items: Product[];
-    status: 'idle' | 'loading' | 'succeeded' | 'failed';
-    error: string | null;
-}
+
 
 const initialState: ProductsState = {
     items: [],

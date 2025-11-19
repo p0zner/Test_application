@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import type {Product} from "../../types/product.ts";
-import type {ProductFormData} from "../../components/Form/schema/schema.ts";
+import type {Product} from "@/types/product";
+import type {ProductFormData} from "@/components/Form/schema/schema";
 import {v4 as uuidv4} from "uuid";
-import {toBase64} from "../../utils/image.utils.ts";
+import {toBase64} from "@/utils/image.utils";
 
 interface EditProductArgs {
     id: string;

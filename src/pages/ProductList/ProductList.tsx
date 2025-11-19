@@ -1,6 +1,6 @@
 import ProductCard from "./ProductCard/ProductCard.tsx";
 import Loader from "../../components/Loader/Loader.tsx";
-import {useAppSelector} from "../../store/hooks/useAppSelector.ts";
+import {useAppSelector} from "@/store/hooks/useAppSelector.ts";
 
 import classes from './productList.module.scss';
 

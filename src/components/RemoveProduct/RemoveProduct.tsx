@@ -1,9 +1,9 @@
 import {useCallback} from "react";
-import {deleteProduct} from "../../store/thunks/productsThunk.ts";
+import {deleteProduct} from "@/store/thunks/productsThunk.ts";
 import {toast} from "react-toastify";
-import {useAppDispatch} from "../../store/hooks/useAppDispatch.ts";
+import {useAppDispatch} from "@/store/hooks/useAppDispatch.ts";
 import DeleteButton from "../DeleteButton/DeleteButton.tsx";
-import type {Product} from "../../types/product.ts";
+import type {Product} from "@/types/product.ts";
 
 interface RemoveProductProps {
     product?: Product;

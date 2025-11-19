@@ -1,6 +1,6 @@
 import {type SubmitHandler, useForm} from "react-hook-form";
 import {type ProductFormData, productSchema} from "./schema/schema.ts";
-import type {Product} from "../../types/product.ts";
+import type {Product} from "@/types/product.ts";
 import {zodResolver} from "@hookform/resolvers/zod";
 import {useEffect, useState} from "react";
 import FormInput from "./FormInput/FormField.tsx";
@@ -8,7 +8,7 @@ import FormField from "./FormField/FormField.tsx";
 import FormTextArea from "./FormTextArea/FormTextArea.tsx";
 
 import classes from './form.module.scss';
-import {toBase64} from "../../utils/image.utils.ts";
+import {toBase64} from "@/utils/image.utils.ts";
 
 interface FormProps {
     onSubmit: SubmitHandler<ProductFormData>;

@@ -2,9 +2,9 @@ import {memo, useState} from 'react';
 import {Trash2} from 'lucide-react';
 import classes from './deleteButton.module.scss';
 import * as React from "react";
-import IconButton from "../IconButton/IconButton.tsx";
 import classNames from "classnames";
 import Loader from "../Loader/Loader.tsx";
+import IconButton from "../IconButton/IconButton.tsx";
 
 interface DeleteButtonProps {
     id: string;

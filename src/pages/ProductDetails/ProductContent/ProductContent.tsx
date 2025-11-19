@@ -1,8 +1,8 @@
 import ProductImage from "../ProductImage/ProductImage.tsx";
-import {convertPrice} from "../../../utils/price.utils.ts";
+import {convertPrice} from "@/utils/price.utils.ts";
 
 import classes from './productContent.module.scss'
-import {useProductDetail} from "../../../context/productDetailContext.ts";
+import {useProductDetail} from "@/context/productDetailContext.ts";
 
 const ProductContent = () => {
     const product = useProductDetail()

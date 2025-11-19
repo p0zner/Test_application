@@ -1,13 +1,13 @@
 import {useParams} from 'react-router-dom';
-import {useAppSelector} from "../../store/hooks/useAppSelector.ts";
+import {useAppSelector} from "@/store/hooks/useAppSelector.ts";
 import Loader from "../../components/Loader/Loader.tsx";
-import {selectProductById} from "../../store/selectors/selectProductById.ts";
+import {selectProductById} from "@/store/selectors/selectProductById.ts";
 
 import classes from './productDetails.module.scss';
 import NotFoundPage from "../NotFoundPage/NotFoundPage.tsx";
 import ActionBar from "./ActionBar/ActionBar.tsx";
 import ProductContent from "./ProductContent/ProductContent.tsx";
-import { ProductDetailContext } from "../../context/productDetailContext.ts";
+import { ProductDetailContext } from "@/context/productDetailContext.ts";
 
 
 const ProductDetailPage = () => {

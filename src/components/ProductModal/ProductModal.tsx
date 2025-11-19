@@ -5,7 +5,7 @@ import { toast } from 'react-toastify';
 import Modal from '../Modal/Modal';
 import Form from "../Form/Form.tsx";
 import type {ProductFormData} from "../Form/schema/schema.ts";
-import type {Product} from "../../types/product.ts";
+import type {Product} from "@/types/product.ts";
 
 interface ProductModalProps {
     isOpen: boolean;

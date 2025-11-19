@@ -5,7 +5,7 @@ import RemoveProduct from "../../../components/RemoveProduct/RemoveProduct.tsx";
 
 import classes from './actionBar.module.scss';
 import EditProduct from "../../../components/EditProduct/EditProduct.tsx";
-import {useProductDetail} from "../../../context/productDetailContext.ts";
+import {useProductDetail} from "@/context/productDetailContext.ts";
 
 const ActionBar = () => {
     const navigate = useNavigate();

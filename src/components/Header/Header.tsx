@@ -1,12 +1,12 @@
 import {Link} from "react-router-dom";
 import classes from './header.module.scss'
 import {Plus} from "lucide-react";
-import {useAppDispatch} from "../../store/hooks/useAppDispatch.ts";
+import {useAppDispatch} from "@/store/hooks/useAppDispatch.ts";
 import {useCallback} from "react";
 import type {ProductFormData} from "../Form/schema/schema.ts";
 import {toast} from "react-toastify";
-import {addProduct} from "../../store/thunks/productsThunk.ts";
-import {useModal} from "../../hooks/useModal.ts";
+import {addProduct} from "@/store/thunks/productsThunk.ts";
+import {useModal} from "@/hooks/useModal.ts";
 import ProductModal from "../ProductModal/ProductModal.tsx";
 
 const Header = () => {

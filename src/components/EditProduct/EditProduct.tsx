@@ -2,11 +2,11 @@ import {FilePenLine} from "lucide-react";
 import IconButton from "../IconButton/IconButton.tsx";
 import ProductModal from "../ProductModal/ProductModal.tsx";
 import type {ProductFormData} from "../Form/schema/schema.ts";
-import {editProduct} from "../../store/thunks/productsThunk.ts";
+import {editProduct} from "@/store/thunks/productsThunk";
 import {toast} from "react-toastify";
-import {useModal} from "../../hooks/useModal.ts";
-import {useAppDispatch} from "../../store/hooks/useAppDispatch.ts";
-import type {Product} from "../../types/product.ts";
+import {useModal} from "@/hooks/useModal";
+import {useAppDispatch} from "@/store/hooks/useAppDispatch";
+import type {Product} from "@/types/product";
 
 interface EditProductProps {
     product?: Product;
