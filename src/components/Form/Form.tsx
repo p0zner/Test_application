@@ -8,6 +8,7 @@ import FormField from "./FormField/FormField.tsx";
 import FormTextArea from "./FormTextArea/FormTextArea.tsx";
 
 import classes from './form.module.scss';
+import {toBase64} from "../../utils/image.utils.ts";
 
 interface FormProps {
     onSubmit: SubmitHandler<ProductFormData>;
@@ -23,7 +24,7 @@ const Form = ({onSubmit, editingProduct, isSubmitting}: FormProps) => {
         handleSubmit,
         reset,
         watch,
-        formState: { errors },
+        formState: {errors},
     } = useForm<ProductFormData>({
         resolver: zodResolver(productSchema),
         mode: 'onSubmit',
@@ -33,7 +34,7 @@ const Form = ({onSubmit, editingProduct, isSubmitting}: FormProps) => {
     const imageFile = watch('image');
 
     useEffect(() => {
-        if (isEditMode && editingProduct) {
+        if (editingProduct) {
             setImagePreview(editingProduct.image);
             reset({
                 title: editingProduct.title,
@@ -44,15 +45,27 @@ const Form = ({onSubmit, editingProduct, isSubmitting}: FormProps) => {
             setImagePreview(null);
             reset();
         }
-    }, [editingProduct, isEditMode, reset]);
+    }, [editingProduct, reset]);
 
-    // Эффект для обновления превью
     useEffect(() => {
         if (imageFile && imageFile.length > 0) {
-            const file = imageFile[0];
-            const newPreviewUrl = URL.createObjectURL(file);
-            setImagePreview(newPreviewUrl);
-            return () => URL.revokeObjectURL(newPreviewUrl);
+            const file = imageFile[0]
+            let isCancelled = false;
+
+            toBase64(file)
+                .then(base64String => {
+                    if (!isCancelled) {
+                        setImagePreview(base64String);
+                    }
+                })
+                .catch(() => {
+                    if (!isCancelled) {
+                        setImagePreview(null);
+                    }
+                });
+            return () => {
+                isCancelled = true
+            }
         }
     }, [imageFile]);
     return (
@@ -77,7 +90,7 @@ const Form = ({onSubmit, editingProduct, isSubmitting}: FormProps) => {
             {imagePreview && (
                 <div className={classes.currentImagePreview}>
                     <p>Превью изображения:</p>
-                    <img src={imagePreview} alt="Превью" />
+                    <img src={imagePreview} alt="Превью"/>
                 </div>
             )}
 

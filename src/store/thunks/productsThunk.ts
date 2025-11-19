@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import type {Product} from "../../types/product.ts";
 import type {ProductFormData} from "../../components/Form/schema/schema.ts";
 import {v4 as uuidv4} from "uuid";
+import {toBase64} from "../../utils/image.utils.ts";
 
 interface EditProductArgs {
     id: string;
@@ -27,7 +28,6 @@ export const fetchProducts = createAsyncThunk<Product[]>(
                 throw new Error('Не удалось загрузить данные');
             }
             const data: Product[] = await response.json();
-            localStorage.setItem('products', JSON.stringify(data));
             return data;
         } catch (error) {
             return rejectWithValue(error);
@@ -45,14 +45,14 @@ export const addProduct = createAsyncThunk<Product, ProductFormData>(
         }
 
         const imageFile = productData.image[0];
-        const imageUrl = URL.createObjectURL(imageFile);
+        const imageBase64 = await toBase64(imageFile);
 
         const newProduct: Product = {
             id: uuidv4(),
             title: productData.title,
             description: productData.description,
             price: productData.price,
-            image: imageUrl,
+            image: imageBase64,
         };
         return newProduct;
     }
@@ -68,7 +68,7 @@ export const editProduct = createAsyncThunk<EditProductReturn, EditProductArgs>(
 
         if (imageFileList && imageFileList.length > 0) {
             const imageFile = imageFileList[0];
-            updatedData.image = URL.createObjectURL(imageFile);
+            updatedData.image = await toBase64(imageFile);
         }
 
         return { id, updatedData };

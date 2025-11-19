@@ -12,9 +12,9 @@ const ProductImage = ({product}: ProductImageProps) => {
 
     return (
         <>
-        <div className={classes.imageContainer} onClick={open}>
-            <img src={product.image} alt={product.title} className={classes.image}/>
-        </div>
+            <div className={classes.imageContainer} onClick={open}>
+                <img src={product.image} alt={product.title} className={classes.image}/>
+            </div>
             <ImageModal
                 isOpen={isOpen}
                 onClose={close}
