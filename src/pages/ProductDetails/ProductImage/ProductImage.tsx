@@ -1,7 +1,7 @@
 import classes from "../productDetails.module.scss";
 import ImageModal from "../../../components/ImageModal/ImageModal.tsx";
-import type {Product} from "../../../types/product.ts";
-import {useModal} from "../../../hooks/useModal.ts";
+import type {Product} from "@/types/product.ts";
+import {useModal} from "@/hooks/useModal.ts";
 
 interface ProductImageProps {
     product: Product;
